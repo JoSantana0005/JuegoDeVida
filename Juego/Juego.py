@@ -22,6 +22,8 @@ nxC,nyC = 50,50
 dimeX = witdh/nxC
 dimeY = height/nyC
 
+#Estado de las celdas. Vivas = 1; Muertas = 0
+EstadodeJuego = np.zeros((nxC,nyC))
 #Abriendo la ventana
 while True:
     py.display.flip()
@@ -33,9 +35,21 @@ while True:
         #Creando los cuadros
     for y in range(0,nxC):
         for x in range(0,nyC):
+            #Calculando el numero de vecinos cercanos
+            vecinosCelda = EstadodeJuego[(x-1)%nxC,(y-1)%nyC] + \
+                           EstadodeJuego[(x)%nxC,(y-1)%nyC] + \
+                           EstadodeJuego[(x+1)%nxC,(y-1)%nyC] + \
+                           EstadodeJuego[(x-1)%nxC,(y)%nyC] + \
+                           EstadodeJuego[(x+1)%nxC,(y)%nyC] + \
+                           EstadodeJuego[(x-1)%nxC,(y+1)%nyC] + \
+                           EstadodeJuego[(x)%nxC,(y+1)%nyC] + \
+                           EstadodeJuego[(x+1)%nxC,(y+1)%nyC]
+
+            
             poligonos = [((x)*dimeX,y*dimeY),
                          ((x+1)*dimeX,y*dimeY),
                          ((x+1)*dimeX,(y+1)*dimeY),
                          ((x)*dimeX,(y+1)*dimeY)]
+            
             py.draw.polygon(dimesiones,(128,128,128),poligonos,1)
     py.display.flip()
