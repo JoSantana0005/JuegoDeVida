@@ -36,15 +36,22 @@ while True:
     for y in range(0,nxC):
         for x in range(0,nyC):
             #Calculando el numero de vecinos cercanos
-            vecinosCelda = EstadodeJuego[(x-1)%nxC,(y-1)%nyC] + \
-                           EstadodeJuego[(x)%nxC,(y-1)%nyC] + \
-                           EstadodeJuego[(x+1)%nxC,(y-1)%nyC] + \
-                           EstadodeJuego[(x-1)%nxC,(y)%nyC] + \
-                           EstadodeJuego[(x+1)%nxC,(y)%nyC] + \
-                           EstadodeJuego[(x-1)%nxC,(y+1)%nyC] + \
-                           EstadodeJuego[(x)%nxC,(y+1)%nyC] + \
-                           EstadodeJuego[(x+1)%nxC,(y+1)%nyC]
+            vecinosCelda = EstadodeJuego[(x-1) % nxC,(y-1) % nyC] + \
+                           EstadodeJuego[(x) % nxC,(y-1) % nyC] + \
+                           EstadodeJuego[(x+1) % nxC,(y-1) % nyC] + \
+                           EstadodeJuego[(x-1) % nxC,(y) % nyC] + \
+                           EstadodeJuego[(x+1) % nxC,(y) % nyC] + \
+                           EstadodeJuego[(x-1) % nxC,(y+1) % nyC] + \
+                           EstadodeJuego[(x) % nxC,(y+1) % nyC] + \
+                           EstadodeJuego[(x+1) % nxC,(y+1) % nyC]
+            #Reglas del juego de la vida
 
+            #Regla 1: Una celula muerta con exactamente 3 vecinos vivos, "revive"
+            if EstadodeJuego[x,y] == 0 and vecinosCelda == 3:
+                EstadodeJuego[x,y] = 1
+            #Regla 2: Una celula viva con menos de 2 o mas de 3 vecinos vivas, "Muere"
+            elif EstadodeJuego[x,y] == 1 and (EstadodeJuego < 2 or EstadodeJuego > 3):
+                EstadodeJuego[x,y] = 0
             
             poligonos = [((x)*dimeX,y*dimeY),
                          ((x+1)*dimeX,y*dimeY),
