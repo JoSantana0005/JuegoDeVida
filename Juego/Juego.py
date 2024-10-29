@@ -32,6 +32,8 @@ while True:
             py.quit()
             exit()
     #Logica para el juego
+    #Copiamos el estado actual del juego
+    nuevoEstado = np.copy(EstadodeJuego)
         #Creando los cuadros
     for y in range(0,nxC):
         for x in range(0,nyC):
@@ -48,15 +50,19 @@ while True:
 
             #Regla 1: Una celula muerta con exactamente 3 vecinos vivos, "revive"
             if EstadodeJuego[x,y] == 0 and vecinosCelda == 3:
-                EstadodeJuego[x,y] = 1
+                nuevoEstado[x,y] = 1
             #Regla 2: Una celula viva con menos de 2 o mas de 3 vecinos vivas, "Muere"
             elif EstadodeJuego[x,y] == 1 and (EstadodeJuego < 2 or EstadodeJuego > 3):
-                EstadodeJuego[x,y] = 0
+                nuevoEstado[x,y] = 0
             
             poligonos = [((x)*dimeX,y*dimeY),
                          ((x+1)*dimeX,y*dimeY),
                          ((x+1)*dimeX,(y+1)*dimeY),
                          ((x)*dimeX,(y+1)*dimeY)]
-            
-            py.draw.polygon(dimesiones,(128,128,128),poligonos,1)
+            #Actualizando el estado del juego
+            if nuevoEstado[x,y] == 0:
+                py.draw.polygon(dimesiones,(128,128,128),poligonos,1)
+            else:
+                py.draw.polygon(dimesiones,(255,255,255),poligonos,0)
+        
     py.display.flip()
