@@ -34,11 +34,20 @@ pip install pygame numpy
 ```
 
 ## Reglas del juego
-
 El estado de cada celda en el tablero se actualiza en cada iteración según las siguientes reglas:
 
 Una celda muerta con exactamente 3 vecinos vivos "revive".
 Una celda viva con menos de 2 o más de 3 vecinos vivos "muere".
 Una celda viva con 2 o 3 vecinos vivos permanece viva.
 Las celdas vecinas se consideran en un entorno de Moore, lo que significa que cada celda tiene 8 vecinos (las celdas adyacentes en horizontal, vertical y diagonal).
-  
+
+## Tipos de Automatas  
+Se implementaron diferentes tipos de automatas como:
+- Automata movil
+- Automata estatico
+- Autoamta nave
+- Automata mariposa
+- Automata planeador
+- Automata marciano
+- Automata pentadecathlon
+- Automata parpadeador
