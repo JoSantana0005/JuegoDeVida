@@ -1,4 +1,5 @@
 # JuegoDeVida
+<img src="https://ramonaharrison.github.io/images/conway.gif" width="100%">
  This repository will be about Conway's game of life in python
  con las librerias pygame y numpy
 
