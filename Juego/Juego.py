@@ -21,12 +21,18 @@ nxC,nyC = 50,50
 #Dimesiones de la celda
 dimeX = witdh/nxC
 dimeY = height/nyC
-
 #Estado de las celdas. Vivas = 1; Muertas = 0
 EstadodeJuego = np.zeros((nxC,nyC))
+#Automata movil
+EstadodeJuego[21,21] = 1
+EstadodeJuego[22,22] = 1
+EstadodeJuego[22,23] = 1
+EstadodeJuego[21,23] = 1
+EstadodeJuego[20,23] = 1
+
+
 #Abriendo la ventana
 while True:
-    py.display.flip()
     for event in py.event.get():
         if event.type == py.QUIT:
             py.quit()
@@ -34,7 +40,9 @@ while True:
     #Logica para el juego
     #Copiamos el estado actual del juego
     nuevoEstado = np.copy(EstadodeJuego)
-        #Creando los cuadros
+    dimesiones.fill(bg)
+    time.sleep(0.1)
+    #Creando los cuadros
     for y in range(0,nxC):
         for x in range(0,nyC):
             #Calculando el numero de vecinos cercanos
@@ -52,17 +60,18 @@ while True:
             if EstadodeJuego[x,y] == 0 and vecinosCelda == 3:
                 nuevoEstado[x,y] = 1
             #Regla 2: Una celula viva con menos de 2 o mas de 3 vecinos vivas, "Muere"
-            elif EstadodeJuego[x,y] == 1 and (EstadodeJuego < 2 or EstadodeJuego > 3):
+            elif EstadodeJuego[x,y] == 1 and (vecinosCelda < 2 or vecinosCelda > 3):
                 nuevoEstado[x,y] = 0
             
-            poligonos = [((x)*dimeX,y*dimeY),
-                         ((x+1)*dimeX,y*dimeY),
+            poligonos = [((x)*dimeX,(y)*dimeY),
+                         ((x+1)*dimeX,(y)*dimeY),
                          ((x+1)*dimeX,(y+1)*dimeY),
                          ((x)*dimeX,(y+1)*dimeY)]
-            #Actualizando el estado del juego
+            #Pintando las celdas
             if nuevoEstado[x,y] == 0:
                 py.draw.polygon(dimesiones,(128,128,128),poligonos,1)
             else:
                 py.draw.polygon(dimesiones,(255,255,255),poligonos,0)
-        
+    #Actualizando el estado del juego
+    EstadodeJuego = np.copy(nuevoEstado)
     py.display.flip()
