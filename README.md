@@ -8,4 +8,5 @@ The automata that we put in the game were
  <li>static automata</li>
  <li>mobile automata</li>
 </ul>
+<br>
 And some others
