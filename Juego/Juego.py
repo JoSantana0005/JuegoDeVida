@@ -5,13 +5,23 @@ import time
 
 #Inicio pygame
 py.init()
+
 #Ancho y Largo de la ventana del juego
-witdh,height = 700,500
+witdh,height = 890,500
 py.display.set_caption("Juego de la Vida")
 dimesiones = py.display.set_mode((witdh,height))
+
 #Color del fondo
 bg = 25,25,25
 dimesiones.fill(bg)
+
+#Numeros de celdas
+nxC,nyC = 50,50
+
+#Dimesiones de la celda
+dimeX = witdh/nxC
+dimeY = height/nyC
+
 #Abriendo la ventana
 while True:
     py.display.flip()
@@ -21,4 +31,11 @@ while True:
             exit()
     #Logica para el juego
         #Creando los cuadros
-        
+    for y in range(0,nxC):
+        for x in range(0,nyC):
+            poligonos = [((x)*dimeX,y*dimeY),
+                         ((x+1)*dimeX,y*dimeY),
+                         ((x+1)*dimeX,(y+1)*dimeY),
+                         ((x)*dimeX,(y+1)*dimeY)]
+            py.draw.polygon(dimesiones,(128,128,128),poligonos,1)
+    py.display.flip()
