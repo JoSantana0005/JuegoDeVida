@@ -1,8 +1,6 @@
 # Juego de La Vida de Conway
 <img src="https://ramonaharrison.github.io/images/conway.gif" width="100%">
 
-## ES
-
 ## Descripcion:
 El Juego de la Vida de Conway es un autómata celular creado por el matemático John Horton Conway en 1970. Es un modelo matemático que simula la vida en una cuadrícula bidimensional donde cada celda puede estar viva o muerta. Las celdas evolucionan en función de reglas simples basadas en el estado de las celdas vecinas. Este código implementa el Juego de la Vida utilizando la biblioteca Pygame y NumPy en Python.
 
