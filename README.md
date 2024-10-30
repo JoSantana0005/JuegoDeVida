@@ -20,7 +20,7 @@ El Juego de la Vida de Conway es un autómata celular creado por el matemático 
 
 ## Desarrolladores:
 - Jose Santana [@JoSantana0005](https://github.com/JoSantana0005)
-- Alejandro Chavez [@alejandrochmejia](https://github.com/alejandrochmejia)
+- Alejandro Chávez [@alejandrochmejia](https://github.com/alejandrochmejia)
 - Cesar Dominguez [@cesardarizaleta](https://github.com/cesardarizaleta)
 
 ## Requisitos:
